@@ -20,20 +20,29 @@ class Solution {
 
         while (curr != null){
             if (curr.val < x){
+                // if ir's smaller than x,
+                // then put it to the smallCurr
                 smallCurr.next = curr;
+                // move forward to be ready for the next one
                 smallCurr = smallCurr.next;
             }else {
                 largeCurr.next = curr;
                 largeCurr = largeCurr.next;
             }
 
+            // main pointer moves to the next person
             curr = curr.next;
         }
 
+        // end the last largeCurr with null,
+        // so it won't keep loop through the next one
         largeCurr.next = null;
 
+        // connect the end of small list to
+        // the REAL start of large list
         smallCurr.next = largeDummy.next;
 
+        // return the real first person of the new list
         return smallDummy.next;
     }
 }
