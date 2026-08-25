@@ -1,15 +1,13 @@
 class Solution {
     public void reverseString(char[] s) {
-        int left = 0;
-        int right = s.length - 1;
+        Deque<Character> stack = new ArrayDeque<>();
 
-        while (left < right){
-            char temp = s[left];
-            s[left] = s[right];
-            s[right] = temp;
-
-            left++;
-            right--;
+        for (int i = 0; i < s.length; i++) {
+            stack.push(s[i]);
+        }
+        
+        for (int i = 0; i < s.length; i++) {
+            s[i] = stack.pop();
         }
     }
 }
