@@ -1,21 +1,27 @@
 class Solution {
-    public void sortColors(int[] nums) {
-        int n = nums.length;
-        
-        for (int i = 0; i < n - 1; i++) {
-            int minIdx = i;
+        public void sortColors(int[] nums) {
+            // the index that next 0 should be placed
+            int low = 0;
+            // the current index you're checking
+            int mid = 0;
+            // the index that next 2 should be placed
+            int high = nums.length - 1;
 
-            for (int j = i + 1; j < n; j++) {
-                if (nums[j] < nums[minIdx]){
-                    minIdx = j;
+            while (mid <= high){
+                if (nums[mid] == 0){
+                    int temp = nums[low];
+                    nums[low] = nums[mid];
+                    nums[mid] = temp;
+                    low++;
+                    mid++;
+                } else if (nums[mid] == 1){
+                    mid++;
+                } else {
+                    int temp = nums[high];
+                    nums[high] = nums[mid];
+                    nums[mid] = temp;
+                    high--;
                 }
-            }
-            
-            if (minIdx != i){
-                int temp = nums[minIdx];
-                nums[minIdx] = nums[i];
-                nums[i] = temp;
             }
         }
     }
-}
